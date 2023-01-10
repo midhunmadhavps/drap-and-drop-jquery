@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQ2</title>
+  <link rel="stylesheet" href="JQ2.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="JQ2.js"></script>	
+</head>
+
+<body>
+    <div class="row">
+        
+        
+        <div class="col-6">
+            <div id="india-1" class="ui-widget-content drag">
+                 <p>Delhi</p>
+            </div>
+            <div id="pakistan-1" class="ui-widget-content drag">
+                <p>Lahore</p>
+           </div>
+        </div>
+        <div class="col-6">
+            <div id="india" class="ui-widget-content drop">
+                 <p>India</p>
+            </div>
+            <div id="pakistan" class="ui-widget-content drop">
+                <p>Pakistan</p>
+           </div>
+        </div>
+    </div>
+ 
+</body>
+</html>
+
+
+//CSS PART
+
+
+  .drag { width:30%; height:50px; margin:5%; padding:1%; border:2px solid black; background-color:rgba(196, 192, 192);}
+  .drop {width:40%; height:100px; margin:5%; padding:1%; border:2px solid black; background-color:rgba(196, 192, 192);}
+
+//JS PART
+
+
+$(document).ready(function () {
+      $(".drag").draggable();
+      $(".drop").droppable({
+            accept: ".drag",
+            drop: function (event, ui) {
+                  var arrdrag = ui.draggable.attr("id").split("-");
+                  if($(this).attr("id")==arrdrag[0]){
+                        $(this).css("background-color","green");
+                        ui.draggable.css("background-color","green");
+                  }
+                  else{
+                        $(this).css("background-color","red");
+                        ui.draggable.css("background-color","red");
+                  }
+
+                  $(".box").css("background-color", "#00FFFF");
+                  $(".box1").css("background-color", "#00FFFF");
+            }
+      
+      });
+
+});
